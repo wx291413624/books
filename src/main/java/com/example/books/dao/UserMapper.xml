@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.books.dao.UserMapper">
+    <resultMap id="BaseResultMap" type="com.example.books.model.User">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+        <result column="gender" property="gender" jdbcType="VARCHAR"/>
+        <result column="age" property="age" jdbcType="VARCHAR"/>
+        <result column="card" property="card" jdbcType="VARCHAR"/>
+        <result column="real_name" property="realName" jdbcType="VARCHAR"/>
+        <result column="pwd" property="pwd" jdbcType="VARCHAR"/>
+        <result column="reg_date" property="regDate" jdbcType="TIMESTAMP"/>
+        <result column="img" property="img" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id,  user_name, phone, gender, age, card, real_name, pwd, reg_date, img
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from book_user
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from book_user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.example.books.model.User" useGeneratedKeys="true"
+            keyProperty="id">
+    insert into book_user (id,  user_name,
+      phone, gender, age, 
+      card, real_name, pwd, 
+       reg_date,img)
+    values (#{id,jdbcType=INTEGER},   #{userName,jdbcType=VARCHAR},
+      #{phone,jdbcType=VARCHAR}, #{gender,jdbcType=VARCHAR}, #{age,jdbcType=VARCHAR}, 
+      #{card,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR}, #{pwd,jdbcType=VARCHAR}, 
+      #{regDate,jdbcType=TIMESTAMP},
+      #{img,jdbcType=VARCHAR} )
+  </insert>
+    <insert id="insertSelective" parameterType="com.example.books.model.User"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into book_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="userName != null">
+                user_name,
+            </if>
+            <if test="phone != null">
+                phone,
+            </if>
+            <if test="gender != null">
+                gender,
+            </if>
+            <if test="age != null">
+                age,
+            </if>
+            <if test="card != null">
+                card,
+            </if>
+            <if test="realName != null">
+                real_name,
+            </if>
+            <if test="pwd != null">
+                pwd,
+            </if>
+            <if test="regDate != null">
+                reg_date,
+            </if>
+            <if test="img != null">
+                img,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="userName != null">
+                #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="gender != null">
+                #{gender,jdbcType=VARCHAR},
+            </if>
+            <if test="age != null">
+                #{age,jdbcType=VARCHAR},
+            </if>
+            <if test="card != null">
+                #{card,jdbcType=VARCHAR},
+            </if>
+            <if test="realName != null">
+                #{realName,jdbcType=VARCHAR},
+            </if>
+            <if test="pwd != null">
+                #{pwd,jdbcType=VARCHAR},
+            </if>
+            <if test="regDate != null">
+                #{regDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="img != null">
+                #{img,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.example.books.model.User">
+        update book_user
+        <set>
+            <if test="userName != null">
+                user_name = #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                phone = #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="gender != null">
+                gender = #{gender,jdbcType=VARCHAR},
+            </if>
+            <if test="age != null">
+                age = #{age,jdbcType=VARCHAR},
+            </if>
+            <if test="card != null">
+                card = #{card,jdbcType=VARCHAR},
+            </if>
+            <if test="realName != null">
+                real_name = #{realName,jdbcType=VARCHAR},
+            </if>
+            <if test="pwd != null">
+                pwd = #{pwd,jdbcType=VARCHAR},
+            </if>
+            <if test="regDate != null">
+                reg_date = #{regDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="img != null">
+                img = #{img,jdbcType=VARCHAR},
+            </if>
+            <if test="companyId != null">
+                company_id = #{companyId,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.example.books.model.User">
+    update book_user
+    set
+      user_name = #{userName,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=VARCHAR},
+      age = #{age,jdbcType=VARCHAR},
+      card = #{card,jdbcType=VARCHAR},
+      real_name = #{realName,jdbcType=VARCHAR},
+      pwd = #{pwd,jdbcType=VARCHAR},
+      reg_date = #{regDate,jdbcType=TIMESTAMP},
+      img = #{img,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+</mapper>

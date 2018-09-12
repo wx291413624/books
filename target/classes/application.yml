@@ -1,0 +1,9 @@
+spring:
+  datasource:
+       url: "jdbc:mysql://localhost:3306/books?useUnicode=true&&characterEncoding=UTF-8&useSSL=true"
+       type: "com.alibaba.druid.pool.DruidDataSource"
+       username: "debian-sys-maint"
+       password: "RQzOmWD3tvYYhXrp"
+       driver-class-name: "com.mysql.jdbc.Driver"
+server:
+  port: 8090
