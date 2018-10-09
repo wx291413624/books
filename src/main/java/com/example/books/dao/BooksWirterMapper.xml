@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.books.dao.BooksWirterMapper">
+    <resultMap id="BaseResultMap" type="com.example.books.model.BooksWirter">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="writer_name" property="writerName" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, writer_name
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from books_wirter
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from books_wirter
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.example.books.model.BooksWirter">
+    insert into books_wirter (id, writer_name)
+    values (#{id,jdbcType=INTEGER}, #{writerName,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.example.books.model.BooksWirter">
+        insert into books_wirter
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="writername != null">
+                writer_name,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="writerName != null">
+                #{writerName,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.example.books.model.BooksWirter">
+        update books_wirter
+        <set>
+            <if test="writerName != null">
+                writer_name = #{writerName,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.example.books.model.BooksWirter">
+    update books_wirter
+    set writer_name = #{writerName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
